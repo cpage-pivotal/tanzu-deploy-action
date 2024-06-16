@@ -30676,45 +30676,112 @@ module.exports = parseParams
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__nccwpck_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__nccwpck_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__nccwpck_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__nccwpck_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
+__nccwpck_require__.r(__webpack_exports__);
+/* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
+/* harmony export */   "run": () => (/* binding */ run),
+/* harmony export */   "setup": () => (/* binding */ setup)
+/* harmony export */ });
+/* harmony import */ var child_process__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(2081);
+/* harmony import */ var child_process__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(child_process__WEBPACK_IMPORTED_MODULE_0__);
+
+
 const core = __nccwpck_require__(9935);
 const tc = __nccwpck_require__(2275);
 
 const url = "https://github.com/vmware-tanzu/tanzu-cli/releases/download/v1.3.0/tanzu-plugins-admin-linux-amd64.tar.gz";
 
-// Get version of tool to be installed
-const version = core.getInput('version');
+async function setup() {
+    // Get version of tool to be installed
+    const version = core.getInput('version');
 
-// Download the specific version of the tool, e.g. as a tarball
-const pathToTarball = tc.downloadTool(url);
+    // Download the specific version of the tool, e.g. as a tarball
+    const pathToTarball = await tc.downloadTool(url);
 
-// Extract the tarball onto the runner
-const pathToCLI = tc.extractTar(pathToTarball);
+    // Extract the tarball onto the runner
+    const pathToCLI = await tc.extractTar(pathToTarball);
 
-// Expose the tool by adding it to the PATH
-core.addPath(pathToCLI)
+    // Expose the tool by adding it to the PATH
+    core.addPath(pathToCLI)
+}
 
-const { exec } = __nccwpck_require__(2081);
-const apiToken = core.getInput("tanzu_api_token");
+async function run() {
 
-exec("TANZU_API_TOKEN=" + apiToken + " tanzu login", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
+    try {
+        await setup()
+    } catch (error) {
+        if (/\bprocess\b.+\bfailed\b/.test(error.message)) {
+            core.setFailed(error.message)
+        } else {
+            core.setFailed(error.stack)
+        }
     }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-});
+
+    const { exec } = __nccwpck_require__(2081);
+    const apiToken = core.getInput("tanzu_api_token");
+
+    exec("TANZU_API_TOKEN=" + apiToken + " tanzu login", (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+    });
+}
+
+run()
 
 })();
 

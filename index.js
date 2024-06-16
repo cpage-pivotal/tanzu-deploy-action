@@ -1,31 +1,50 @@
+import {exec} from "child_process";
+
 const core = require('@actions/core');
 const tc = require('@actions/tool-cache');
 
 const url = "https://github.com/vmware-tanzu/tanzu-cli/releases/download/v1.3.0/tanzu-plugins-admin-linux-amd64.tar.gz";
 
-// Get version of tool to be installed
-const version = core.getInput('version');
+export async function setup() {
+    // Get version of tool to be installed
+    const version = core.getInput('version');
 
-// Download the specific version of the tool, e.g. as a tarball
-const pathToTarball = tc.downloadTool(url);
+    // Download the specific version of the tool, e.g. as a tarball
+    const pathToTarball = await tc.downloadTool(url);
 
-// Extract the tarball onto the runner
-const pathToCLI = tc.extractTar(pathToTarball);
+    // Extract the tarball onto the runner
+    const pathToCLI = await tc.extractTar(pathToTarball);
 
-// Expose the tool by adding it to the PATH
-core.addPath(pathToCLI)
+    // Expose the tool by adding it to the PATH
+    core.addPath(pathToCLI)
+}
 
-const { exec } = require("child_process");
-const apiToken = core.getInput("tanzu_api_token");
+export async function run() {
 
-exec("TANZU_API_TOKEN=" + apiToken + " tanzu login", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
+    try {
+        await setup()
+    } catch (error) {
+        if (/\bprocess\b.+\bfailed\b/.test(error.message)) {
+            core.setFailed(error.message)
+        } else {
+            core.setFailed(error.stack)
+        }
     }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-});
+
+    const { exec } = require("child_process");
+    const apiToken = core.getInput("tanzu_api_token");
+
+    exec("TANZU_API_TOKEN=" + apiToken + " tanzu login", (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+    });
+}
+
+run()
