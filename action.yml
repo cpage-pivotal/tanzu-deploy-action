@@ -30,4 +30,12 @@ runs:
       shell: bash
       env:
         TANZU_API_TOKEN: ${{ inputs.tanzu_api_token }}
+    - name: Deploy Application
+      run: ${{ github.action_path }}/deploy-app.sh
+      shell: bash
+      env:
+        CONTAINER_REGISTRY: ${{ inputs.container_registry }}
+        PROJECT: ${{ inputs.project }}
+        SPACE: ${{ inputs.space }}
+
 
