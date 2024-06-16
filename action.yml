@@ -26,7 +26,7 @@ runs:
   using: 'composite'
   steps:
     - name: Log into Tanzu Platform
-      run: login-platform.sh
+      run: login.sh
       shell: bash
       env:
         TANZU_API_TOKEN: ${{ inputs.tanzu_api_token }}
