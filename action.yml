@@ -25,14 +25,8 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: echo
-      run: echo '${{ github.action_path }}'
-      shell: bash
-    - name: ls
-      run: ls ${{ github.action_path }}
-      shell: bash
     - name: Log into Tanzu Platform
-      run: ${{ github.action_path }}/login.sh
+      run: ${{ github.action_path }}/login-platform.sh
       shell: bash
       env:
         TANZU_API_TOKEN: ${{ inputs.tanzu_api_token }}
