@@ -25,6 +25,12 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: pwd
+      run: pwd
+      shell: bash
+    - name: ls
+      run: ls
+      shell: bash
     - name: Log into Tanzu Platform
       run: login.sh
       shell: bash
