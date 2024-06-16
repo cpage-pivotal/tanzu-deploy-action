@@ -30737,18 +30737,23 @@ __nccwpck_require__.r(__webpack_exports__);
 const core = __nccwpck_require__(9935);
 const tc = __nccwpck_require__(2275);
 
-const url = "https://github.com/vmware-tanzu/tanzu-cli/releases/download/v1.3.0/tanzu-plugins-admin-linux-amd64.tar.gz";
+const url = "https://github.com/vmware-tanzu/tanzu-cli/releases/download/v1.3.0/tanzu-cli-linux-amd64.tar.gz";
 
 async function setup() {
     // Get version of tool to be installed
     const version = core.getInput('version');
 
+    console.log( "Downloading tool" );
     // Download the specific version of the tool, e.g. as a tarball
     const pathToTarball = await tc.downloadTool(url);
+    console.log( "Path to tarball: " + pathToTarball)
 
+    console.log( "Extracting tar" );
     // Extract the tarball onto the runner
     const pathToCLI = await tc.extractTar(pathToTarball);
+    console.log( "Path to CLI" );
 
+    console.log("Adding to path");
     // Expose the tool by adding it to the PATH
     core.addPath(pathToCLI)
 }
