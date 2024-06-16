@@ -30773,7 +30773,7 @@ async function run() {
     const { exec } = __nccwpck_require__(2081);
     const apiToken = core.getInput("tanzu_api_token");
 
-    exec("TANZU_API_TOKEN=" + apiToken + " tanzu login", (error, stdout, stderr) => {
+    exec("TANZU_API_TOKEN=" + apiToken + " tanzu-cli-linux_amd64 login", (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
