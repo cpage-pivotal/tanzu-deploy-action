@@ -30751,11 +30751,11 @@ async function setup() {
     console.log( "Extracting tar" );
     // Extract the tarball onto the runner
     const pathToCLI = await tc.extractTar(pathToTarball);
-    console.log( "Path to CLI" );
+    console.log( "Path to CLI:" + pathToCLI );
 
     console.log("Adding to path");
     // Expose the tool by adding it to the PATH
-    core.addPath(pathToCLI)
+    core.addPath(pathToCLI + "/v1.3.0")
 }
 
 async function run() {
