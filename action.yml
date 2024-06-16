@@ -6,26 +6,28 @@ inputs:
     description: 'API Token used to authenticate to Tanzu Platform'
     required: true
     default: ''
-#  container_registry:
-#    description: 'Registry you will push images to (e.g. myrepo.azurecr.io/build/{name}'
-#    required: true
-#    default: ''
-#  project:
-#    description: 'Tanzu Platform project'
-#    required: true
-#    default: ''
-#  space:
-#    description: 'Tanzu Platform space'
-#    required: true
-#    default: ''
+  container_registry:
+    description: 'Registry you will push images to (e.g. myrepo.azurecr.io/build/{name}'
+    required: true
+    default: ''
+  project:
+    description: 'Tanzu Platform project'
+    required: true
+    default: ''
+  space:
+    description: 'Tanzu Platform space'
+    required: true
+    default: ''
 
 #outputs:
 #  time: # id of output
 #    description: 'The time we greeted you'
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
-#    - ${{ inputs.container_registry }}
-#    - ${{ inputs.project }}
-#    - ${{ inputs.space }}
+  using: 'composite'
+  steps:
+    - name: Log into Tanzu Platform
+      run: login-platform.sh
+      shell: bash
+      env:
+        TANZU_API_TOKEN: ${{ inputs.tanzu_api_token }}
 
