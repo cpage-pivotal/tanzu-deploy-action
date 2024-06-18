@@ -37,8 +37,8 @@ In the root of your source code repo, create the workflow file `.github/workflow
 Replace the fields marked `<<ENTER VALUE>>` with your own values:
 * `registry:` Enter the DNS name for your container repo (e.g. harbor.mycompany.com)
 * `container_registry:` Enter the full name for the location you want to publish your build image (e.g. harbor.mycompany.com/tanzu-platform/my-app)
-* `project:` Enter the name of the Tanzu Platform project where you will be publishing [Docs](https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/getting-started-set-up-infra.html#create-project)
-* `space:` Enter the name of the Tanzu Platform space where you will be publishing [Docs](https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/getting-started-create-app-envmt.html#create-a-space-in-your-project)
+* `project:` Enter the name of the Tanzu Platform project where you will be publishing ([Docs](https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/getting-started-set-up-infra.html#create-project))
+* `space:` Enter the name of the Tanzu Platform space where you will be publishing ([Docs](https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/getting-started-create-app-envmt.html#create-a-space-in-your-project))
 
 ### Run the workflow
 
