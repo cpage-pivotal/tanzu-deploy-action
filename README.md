@@ -20,15 +20,15 @@ To use this action with your application, you must have the following:
 
 You can create your secrets at the repo or organization level for use with your Github Workflow. Here are the steps for creating at the repo level:
 
-* From your source repo, click on Settings, and select Secrets and Variables / Actions
-
-* Using the "New Repository Secret" button, generate secrets with the following names:
+From your source repo, click on Settings, and select Secrets and Variables / Actions
 
 ![Secrets](images/secrets.png)
 
-**TanzuApiToken**: The API Token that you generated in the Prerequisites<br>
-**RepositoryUsername**: Username credentials for your container registry<br>
-**RepositoryPassword**: Password credentials for your container registry
+Using the "New Repository Secret" button, generate secrets with the following names:
+
+* **TanzuApiToken**: The API Token that you generated in the Prerequisites<br>
+* **RepositoryUsername**: Username credentials for your container registry<br>
+* **RepositoryPassword**: Password credentials for your container registry
 
 ### Set up the Github Workflow
 
