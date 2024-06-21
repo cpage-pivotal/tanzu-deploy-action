@@ -10,13 +10,13 @@ jobs:
       - name: Log in to Container Registry
         uses: docker/login-action@v3
         with:
-          registry: <<ENTER VALUE>>
-          username: ${{ secrets.RepositoryUsername }}
-          password: ${{ secrets.RepositoryPassword }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy application to Tanzu Platform
         uses: cpage-pivotal/tanzu-deploy-action@v1.3
         with:
           tanzu_api_token: ${{ secrets.TanzuApiToken }}
-          container_registry: <<ENTER VALUE>>
+          container_registry: ghcr.io/${{ github.actor }}/<<ENTER VALUE>>
           project: <<ENTER VALUE>>
           space: <<ENTER VALUE>>
