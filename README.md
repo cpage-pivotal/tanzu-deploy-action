@@ -14,7 +14,7 @@ To use this action with your application, you must have the following:
 
 **ContainerApp configuration.** In the root of your application directory, run `tanzu app init` to generate a default configuration in the `.tanzu/config` subfolder. If you want to deploy other resources with your application, like an `HttpRoute`, add those to the `.tanzu/config` directory. Be sure to commit these resources to Git.
 
-### Create the workflow secrets
+### Create the workflow secret
 
 You can create your secrets at the repo or organization level for use with your Github Workflow. Here are the steps for creating at the repo level:
 
@@ -39,3 +39,9 @@ Replace the fields marked `<<ENTER VALUE>>` with your own values:
 ### Run the workflow
 
 Commit your changes to Github. This will trigger a run of the workflow. You can track progress of the workflow under the Actions tab of your repo.
+
+### Package visibility
+
+The container image you deploy to ghcr needs to have public visibility for Tanzu Platform to read and deploy it (or else you need to configure Tanzu Platform with your ghcr credentials).
+
+If your repo/organization publishes the image as private, [follow these instructions](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility#configuring-visibility-of-packages-for-your-personal-account) to make it public.
