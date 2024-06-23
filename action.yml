@@ -18,6 +18,10 @@ inputs:
     description: 'Tanzu Platform space'
     required: true
     default: ''
+  buildPlanSource:
+    description: '(Optional) Name of custom build plan'
+    required: false
+    default: ''
 
 #outputs:
 #  time: # id of output
@@ -37,3 +41,4 @@ runs:
         CONTAINER_REGISTRY: ${{ inputs.container_registry }}
         PROJECT: ${{ inputs.project }}
         SPACE: ${{ inputs.space }}
+        BUILD_PLAN_SOURCE: ${{ inputs.buildPlanSource }}
