@@ -1,4 +1,3 @@
-tanzu build config --build-plan-source-type=ucp --containerapp-registry $CONTAINER_REGISTRY
 if [[ -z "${BUILD_PLAN_SOURCE}" ]]; then
   tanzu build config --build-plan-source-type=ucp --containerapp-registry $CONTAINER_REGISTRY
 else
