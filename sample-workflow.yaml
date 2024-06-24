@@ -18,5 +18,6 @@ jobs:
         with:
           tanzu_api_token: ${{ secrets.TanzuApiToken }}
           container_registry: ghcr.io/${{ github.actor }}/<<ENTER VALUE>>
+          # buildPlanSource: custom-build-plan // Optional, set if you have a custom build plan configured
           project: <<ENTER VALUE>>
           space: <<ENTER VALUE>>

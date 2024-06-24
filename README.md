@@ -36,6 +36,8 @@ Replace the fields marked `<<ENTER VALUE>>` with your own values:
 * `project:` Enter the name of the Tanzu Platform project where you will be publishing ([Docs](https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/getting-started-set-up-infra.html#create-project))
 * `space:` Enter the name of the Tanzu Platform space where you will be publishing ([Docs](https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/getting-started-create-app-envmt.html#create-a-space-in-your-project))
 
+**(Optional)** If you have a custom build plan set up in your target project, you can uncomment and set the `buildPlanSource` field. This can be used to perform post-build steps like [automatically generating and HTTPRoute](https://github.com/warroyo/custom-http-route-task/tree/main).
+
 ### Run the workflow
 
 Commit your changes to Github. This will trigger a run of the workflow. You can track progress of the workflow under the Actions tab of your repo.
