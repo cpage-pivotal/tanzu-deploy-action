@@ -21,8 +21,11 @@ inputs:
   buildPlanSource:
     description: '(Optional) Name of custom build plan'
     required: false
-    default: ''
-
+    default: 'simple.tanzu.vmware.com'
+  javaVersion:
+    description: 'JVM version to be used for Java workloads'
+    required: false
+    default: '17'
 #outputs:
 #  time: # id of output
 #    description: 'The time we greeted you'
@@ -42,3 +45,4 @@ runs:
         PROJECT: ${{ inputs.project }}
         SPACE: ${{ inputs.space }}
         BUILD_PLAN_SOURCE: ${{ inputs.buildPlanSource }}
+        JAVA_VERSION: ${{ inputs.javaVersion }}
