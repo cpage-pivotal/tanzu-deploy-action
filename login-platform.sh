@@ -4,5 +4,6 @@ tar -xvf /tmp/tanzu.tar.gz -C /tmp
 install /tmp/v1.4.0/tanzu-cli-linux_amd64 /usr/local/bin/tanzu
 tanzu config eula accept
 tanzu plugin install --group vmware-tanzu/app-developer
+tanzu plugin install build --version v0.9.2
 
 tanzu login
