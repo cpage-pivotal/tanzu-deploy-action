@@ -1,5 +1,5 @@
 export TANZU_CLI_CEIP_OPT_IN_PROMPT_ANSWER=no
-wget https://github.com/vmware-tanzu/tanzu-cli/releases/download/v1.4.0/tanzu-plugins-admin-linux-amd64.tar.gz -O /tmp/tanzu.tar.gz
+wget https://github.com/vmware-tanzu/tanzu-cli/releases/download/v1.4.0/tanzu-cli-linux-amd64.tar.gz -O /tmp/tanzu.tar.gz
 tar -xvf /tmp/tanzu.tar.gz -C /tmp
 install /tmp/v1.4.0/tanzu-cli-linux_amd64 /usr/local/bin/tanzu
 tanzu config eula accept
