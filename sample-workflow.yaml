@@ -19,7 +19,7 @@ jobs:
         with:
           tanzu_api_token: ${{ secrets.TanzuApiToken }}
           container_registry: ghcr.io/${{ github.actor }}/<<ENTER VALUE>>
-          # buildPlanSource: custom-build-plan
-          # javaVersion: 17
+          buildPlanSource: simple.tanzu.vmware.com
+          javaVersion: 17
           project: <<ENTER VALUE>>
           space: <<ENTER VALUE>>
