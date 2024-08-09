@@ -15,7 +15,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy application to Tanzu Platform
-        uses: cpage-pivotal/tanzu-deploy-action@v1.4
+        uses: cpage-pivotal/tanzu-deploy-action@v1.4-app-advisor
         with:
           tanzu_api_token: ${{ secrets.TanzuApiToken }}
           container_registry: ghcr.io/${{ github.actor }}/<<ENTER VALUE>>
@@ -23,3 +23,5 @@ jobs:
           javaVersion: 17
           project: <<ENTER VALUE>>
           space: <<ENTER VALUE>>
+          artifactory_token: ${{ secrets.ArtifactoryToken }}
+          app_advisor_server: <<ENTER VALUE>>

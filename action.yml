@@ -5,19 +5,15 @@ inputs:
   tanzu_api_token:
     description: 'API Token used to authenticate to Tanzu Platform'
     required: true
-    default: ''
   container_registry:
     description: 'Registry you will push images to (e.g. myrepo.azurecr.io/build/{name}'
     required: true
-    default: ''
   project:
     description: 'Tanzu Platform project'
     required: true
-    default: ''
   space:
     description: 'Tanzu Platform space'
     required: true
-    default: ''
   buildPlanSource:
     description: '(Optional) Name of custom build plan'
     required: false
@@ -26,6 +22,9 @@ inputs:
     description: 'JVM version to be used for Java workloads'
     required: false
     default: '17'
+  artifactory_token:
+    description: 'Token for Spring Enterprise Subscription'
+    required: true
 #outputs:
 #  time: # id of output
 #    description: 'The time we greeted you'
@@ -46,3 +45,9 @@ runs:
         SPACE: ${{ inputs.space }}
         BUILD_PLAN_SOURCE: ${{ inputs.buildPlanSource }}
         JAVA_VERSION: ${{ inputs.javaVersion }}
+    - name: Run App Advisor
+      run: ${{ github.action_path }}/app-advisor.sh
+      shell: bash
+      env:
+        ARTIFACTORY_TOKEN: ${{ inputs.artifactory_token }}
+        APP_ADVISOR_SERVER: ${{ inputs.app_advisor_server }}
