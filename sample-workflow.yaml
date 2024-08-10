@@ -24,4 +24,5 @@ jobs:
           project: <<ENTER VALUE>>
           space: <<ENTER VALUE>>
           artifactory_token: ${{ secrets.ArtifactoryToken }}
+          git_token: ${{ secrets.GITHUB_TOKEN }}
           app_advisor_server: <<ENTER VALUE>>

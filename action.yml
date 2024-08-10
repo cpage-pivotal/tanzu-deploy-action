@@ -25,6 +25,9 @@ inputs:
   artifactory_token:
     description: 'Token for Spring Enterprise Subscription'
     required: true
+  git_token:
+    description: 'Authentication token for generating pull requests against repo'
+    required: true
 #outputs:
 #  time: # id of output
 #    description: 'The time we greeted you'
@@ -51,3 +54,4 @@ runs:
       env:
         ARTIFACTORY_TOKEN: ${{ inputs.artifactory_token }}
         APP_ADVISOR_SERVER: ${{ inputs.app_advisor_server }}
+        GIT_TOKEN_FOR_PRS: ${{ inputs.git_token }}
