@@ -2,6 +2,8 @@ curl -L -H "Authorization: Bearer $ARTIFACTORY_TOKEN" -o /tmp/advisor-cli.tar -X
 tar -xf /tmp/advisor-cli.tar --strip-components=1 -C /tmp
 install /tmp/advisor /usr/local/bin/advisor
 
+cat $(date) > .gitkeep
+
 advisor build-config get
 advisor build-config publish --url=${APP_ADVISOR_SERVER}
 advisor upgrade-plan apply --push --from-yml --url=${APP_ADVISOR_SERVER}
