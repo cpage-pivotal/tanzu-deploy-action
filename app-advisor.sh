@@ -1,5 +1,5 @@
-curl -L -H "Authorization: Bearer $ARTIFACTORY_TOKEN" -o advisor-cli.tar -X GET https://packages.broadcom.com/artifactory/spring-enterprise/com/vmware/tanzu/spring/application-advisor-cli-linux/0.0.9/application-advisor-cli-linux-0.0.9.tar
-tar -xf advisor-cli.tar --strip-components=1 --exclude=./META-INF -C /tmp
+curl -L -H "Authorization: Bearer $ARTIFACTORY_TOKEN" -o /tmp/advisor-cli.tar -X GET https://packages.broadcom.com/artifactory/spring-enterprise/com/vmware/tanzu/spring/application-advisor-cli-linux/0.0.9/application-advisor-cli-linux-0.0.9.tar
+tar -xf /tmp/advisor-cli.tar --strip-components=1 --exclude=./META-INF
 install /tmp/advisor /usr/local/bin/advisor
 
 advisor build-config get
