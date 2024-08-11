@@ -1,3 +1,6 @@
+echo "Getting Java version"
+java -version
+
 export TANZU_CLI_CEIP_OPT_IN_PROMPT_ANSWER=no
 wget https://github.com/vmware-tanzu/tanzu-cli/releases/download/v1.4.0/tanzu-cli-linux-amd64.tar.gz -O /tmp/tanzu.tar.gz
 tar -xvf /tmp/tanzu.tar.gz -C /tmp
