@@ -15,11 +15,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy application to Tanzu Platform
-        uses: cpage-pivotal/tanzu-deploy-action@v1.4
+        uses: tanzu-build/tanzu-build-action@v1.4
         with:
-          tanzu_api_token: ${{ secrets.TanzuApiToken }}
           container_registry: ghcr.io/${{ github.actor }}/<<ENTER VALUE>>
           buildPlanSource: simple.tanzu.vmware.com
           javaVersion: 17
-          project: <<ENTER VALUE>>
-          space: <<ENTER VALUE>>

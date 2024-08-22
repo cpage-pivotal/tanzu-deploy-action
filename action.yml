@@ -1,27 +1,15 @@
 # action.yml
-name: 'Tanzu Deploy'
-description: 'Deploy an application to Tanzu Platform for Kubernetes'
+name: 'Tanzu Build'
+description: 'Build an application with tanzu build cli'
 inputs:
-  tanzu_api_token:
-    description: 'API Token used to authenticate to Tanzu Platform'
-    required: true
-    default: ''
   container_registry:
     description: 'Registry you will push images to (e.g. myrepo.azurecr.io/build/{name}'
     required: true
     default: ''
-  project:
-    description: 'Tanzu Platform project'
-    required: true
-    default: ''
-  space:
-    description: 'Tanzu Platform space'
-    required: true
-    default: ''
   buildPlanSource:
-    description: '(Optional) Name of custom build plan'
+    description: '(Optional) Name of th fil containing the build plan'
     required: false
-    default: 'simple.tanzu.vmware.com'
+    default: './platform-config.yaml'
   javaVersion:
     description: 'JVM version to be used for Java workloads'
     required: false
@@ -32,17 +20,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Log into Tanzu Platform
-      run: ${{ github.action_path }}/login-platform.sh
-      shell: bash
-      env:
-        TANZU_API_TOKEN: ${{ inputs.tanzu_api_token }}
-    - name: Deploy Application
-      run: ${{ github.action_path }}/deploy-app.sh
+    - name: Build Application
+      run: ${{ github.action_path }}/build-app.sh
       shell: bash
       env:
         CONTAINER_REGISTRY: ${{ inputs.container_registry }}
-        PROJECT: ${{ inputs.project }}
-        SPACE: ${{ inputs.space }}
         BUILD_PLAN_SOURCE: ${{ inputs.buildPlanSource }}
         JAVA_VERSION: ${{ inputs.javaVersion }}
